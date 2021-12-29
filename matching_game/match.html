@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <style>
+
+        body {
+            background-image: url('images/water.jpg');
+        }
+
+        h1, p {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        img {
+            position: absolute;
+            cursor: pointer;
+            width: 100px;
+        }  
+
+        div {
+            position: absolute; 
+            width: 500px;
+            height: 500px;
+            
+        }
+        #rightSide { 
+            left: 500px;
+            border-left: 1px solid;
+
+            
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h1>Matching Game</h1>
+    <p> Click on the extra fish on the left.</p>
+
+    <div class="flex-container" id="leftSide"></div>
+    <div class="flex-container" id="rightSide"></div>
+
+    <script>
+        window.addEventListener('load', generateFish);
+
+        let numberOfFish = 5;
+        const theLeftSide = document.querySelector('#leftSide');
+        const theRightSide = document.querySelector('#rightSide');
+
+        function generateFish(){
+    
+            for(let i = 0; i < numberOfFish; i++){
+                let fish = document.createElement('img');
+                fish.src = 'images/fish.png';
+
+                let randomTop = Math.floor ((Math.random() * 400) + 1);
+                let randomLeft = Math.floor((Math.random() * 400) + 1);
+
+                fish.style.top = randomTop + 'px';
+                fish.style.left = randomLeft + 'px';
+                theLeftSide.appendChild(fish);
+            }
+            const leftSideImages = theLeftSide.cloneNode(true); 
+            leftSideImages.removeChild(leftSideImages.lastChild);
+            theRightSide.appendChild(leftSideImages);
+
+            theLeftSide.lastChild.addEventListener('click',nextLevel);
+
+            document.body.addEventListener('click',gameOver);
+        }
+
+        function nextLevel(){
+            event.stopPropagation(); 
+            numberOfFish += 5;
+
+            while(theLeftSide.firstChild){
+                theLeftSide.removeChild(theLeftSide.firstChild);
+            }
+            while(theRightSide.firstChild){
+                theRightSide.removeChild(theRightSide.firstChild);
+            } 
+
+            generateFish();
+        }
+
+        function gameOver(){
+            alert('Game Over!');
+            document.body.removeEventListener('click',nextLevel);
+            theLeftSide.lastChild.removeEventListener('click',gameOver);
+        }
+
+        
+
+    </script>
+</body>
+</html>

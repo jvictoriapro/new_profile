@@ -1,0 +1,37 @@
+body {
+    font-family: 'Shadows Into Light', cursive;
+    background-image: linear-gradient(45deg, #ed1b67, #f44786, #ffffff, #249f9c, #037a76);
+    background: #FBD3E9; 
+    background: -webkit-linear-gradient(to right, #BB377D, #FBD3E9); 
+    background: linear-gradient(to right, #BB377D, #FBD3E9); 
+    background-size: 400%;
+    min-height: 100vh;
+    animation: background-animation 30s ease-in-out infinite alternate;
+}
+
+@keyframes background-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+
+.display-4 {
+   margin-top: 50px;
+}
+
+img {
+   /* max-width: 25%; */
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fa-custom { 
+   color:black;
+}
+
+#aboutMeModal modal-header {
+    /* background-color: #FBD3E9; */
+    font: black;
+}
